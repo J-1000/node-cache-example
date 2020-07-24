@@ -1,15 +1,21 @@
+const app = require('express')();
+const port = 8000;
+const axios = require('axios');
 const dotenv = require('dotenv')
 dotenv.config()
 
-const axios = require('axios');
-
 const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/map`;
 
-(async = () => {
+app.get('/', async (req, res) => {
     try {
         const response = await axios.get(url, { headers: { "X-CMC_PRO_API_KEY": process.env.API_KEY } })
+        console.log(response);
+        res.json(reponse);
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
-})()
+});
 
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+})
