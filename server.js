@@ -14,7 +14,7 @@ const url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/map`;
 const getCryptocurrencyMap = async (req, res, next) => {
     const content = cache.get(url)
     if (content) {
-        console.log('content found')
+        console.log('retrieved from cache')
         res.locals.data = content
         next()
         return
